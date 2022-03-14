@@ -39,3 +39,8 @@
        
     -Artisan migrate
         php artisan migrate:fresh --seed
+
+## CREATE A UI 
+    - createe a route for admin in web 
+        admin.index
+

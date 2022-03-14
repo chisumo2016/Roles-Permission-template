@@ -50,3 +50,24 @@
     Go to nav example and select sidebar and paste to admin
     Change the dark-mode to  dark 
 
+## Create Roles and Permissions Pages | Spatie Laravel Role and Permission
+      https://spatie.be/docs/laravel-permission/v5/basic-usage/role-permissions
+    We're going to create the roles and permissions pages.
+    Create Permission Controller
+        php artisan make:controller Admin/PermissionController
+        php artisan make:model Admin/Permission -a  
+    Create Role Controller
+        php artisan make:controller Admin/RoleController
+        php artisan make:model Admin/Role -a 
+
+    Add the routes to the routes/web.php
+        Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->group(function () {
+        Route::resource('users', 'Admin\UsersController');
+        Route::resource('permissions', 'Admin\PermissionsController');
+        Route::resource('roles', 'Admin\RolesController');
+});
+    
+ 
+
+
+

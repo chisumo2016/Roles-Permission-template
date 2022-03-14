@@ -72,7 +72,14 @@
     
 ## Display Roles and Permissions | Spatie Laravel Role and Permission
     Display the roles and permissions  table
-    
+    Call the varoables in the view
+        $roles = Role::all();
+        $permissions = Permission::all();
+        
+ ## Create Roles and Permissions | Spatie Role and Permission | Laravel 9 Tutorial   
+    To create the roles and permissions we're going to use the Spatie package.
+    Create the UI for roles  to display the  create page
+    Add the functionality  to create and store the roles ,paermissions in controller\\
 
 
 

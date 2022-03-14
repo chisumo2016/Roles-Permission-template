@@ -66,8 +66,13 @@
         Route::resource('permissions', 'Admin\PermissionsController');
         Route::resource('roles', 'Admin\RolesController');
 });
+
+    Create the UI for roles  to display the index page
+    Create the UI for permissions  to display the index page
     
- 
+## Display Roles and Permissions | Spatie Laravel Role and Permission
+    Display the roles and permissions  table
+    
 
 
 

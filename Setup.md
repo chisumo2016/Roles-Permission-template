@@ -15,6 +15,27 @@
 ## ADD MIDDLEWARE IN APP\Http\Kernel.php
         https://spatie.be/docs/laravel-permission/v5/basic-usage/middleware
     - Add into  middleware to the kernel
-      
-          
-            
+        'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
+        'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
+        'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
+
+## ATTACH THE ADMIN ROLE TO THE USER
+    - Attach the admin role to the user
+        $user->assignRole('admin'); 
+    - CREATE a seeder
+        php artisan make:seeder AdminSeeder
+        php artisan make:seeder RoleSeeder
+    - Create  a role in the roleSeeder
+       https://spatie.be/docs/laravel-permission/v5/basic-usage/basic-usage
+        Role::create(['name' => 'admin']);
+        Role::create(['name' => 'writer']);
+        Role::create(['name' => 'user']);
+    - Create a user in the AdminSeeder
+        Copy from the User Factory and edit       
+    -Assign Role to the user
+        https://spatie.be/docs/laravel-permission/v5/basic-usage/role-permissions
+        $user->assignRole('writer', 'admin');
+    - Call two seeders into the database Seeders
+       
+    -Artisan migrate
+        php artisan migrate:fresh --seed

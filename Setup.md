@@ -40,7 +40,13 @@
     -Artisan migrate
         php artisan migrate:fresh --seed
 
-## CREATE A UI 
+## Create Admin Layout | Spatie Laravel Role and Permission
     - createe a route for admin in web 
         admin.index
+
+## Add Tailwind CSS Sidebar to the Admin Layout | Spatie Laravel Role and Permission
+    To change the admin Layout use https://www.alpinetoolbox.com/
+         https://github.com/jan-heise/responsive-navbar-with-dropdown
+    Go to nav example and select sidebar and paste to admin
+    Change the dark-mode to  dark 
 

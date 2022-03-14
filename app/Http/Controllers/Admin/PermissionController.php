@@ -22,7 +22,7 @@ class PermissionController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-           'name' => 'required|unique:permissions,name,'.$permission->id,
+           'name' => 'required|unique:permissions,name',
        ]);
 
         Permission::create($validate);
@@ -47,6 +47,14 @@ class PermissionController extends Controller
 
         return redirect()->route('admin.permissions.index')
             ->with('success','Permission updated successfully.');
+    }
+
+    public function destroy(Permission $permission)
+    {
+        $permission->delete();
+
+        return redirect()->route('admin.permissions.index')
+            ->with('success','Permission deleted successfully.');
     }
 
 }

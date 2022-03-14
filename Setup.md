@@ -87,5 +87,18 @@
     Add the edit page for  permissions
     create the function edit into permission controller
     create the function update into permission controller
-    Repeat the same prodecure for roles
+    Repeat the same prodecure for roles as you did for permissions
+
+## Delete Roles and Permissions | Spatie Role and Permission | Laravel 9 Tutorial   
+    We need  to hide the role of admin with spatie package
+       With Eloquent  in the documentation 
+          $roles = whereNotIn('name', ['admin'])->get(); put into index function
+    To show the banners when we make changes in the admin layout  
+  
+    Add the button for delete and include the style for the button with tailwindcss
+    Add the route ()
+    Add the delete page for  permissions
+    create the function delete into permission controller
+    create the function destroy into permission controller
+    Repeat the same prodecure for roles as you did for permissions
 

@@ -7,26 +7,29 @@
                 </div>
                 <div class="flex flex-col">
                     <div class="space-y-8 divide-y divide-gray-200 w-1/2 mt-10">
-                        <form action="{{ route('admin.roles.store') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('admin.roles.update', $role) }}" method="post" enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
                             <div class="sm:col-span-6">
-                                <label
-                                    for="name"
-                                    class="block text-sm font-medium text-gray-700"> Name</label>
+                                <label for="name"
+                                       class="block text-sm font-medium text-gray-700"> Name</label>
                                 <div class="mt-1">
                                     <input
                                         type="text"
                                         id="name"
                                         name="name"
+                                        value="{{ $role->name }}"
                                         class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                 </div>
-                                @error('name') <span class="text-red-400 text-sm">{{ $message }}</span> @enderror
+                                    @error('name')
+                                        <span class="text-red-400 text-sm">{{ $message }}</span>
+                                    @enderror
                             </div>
                             <div class="sm:col-span-6 pt-5">
                                 <button
                                     type="submit"
                                     class="px-4 py-2 bg-green-500 hover:bg-green-700 rounded-md">
-                                    Create
+                                    Update
                                 </button>
                             </div>
                         </form>

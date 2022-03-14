@@ -79,7 +79,13 @@
  ## Create Roles and Permissions | Spatie Role and Permission | Laravel 9 Tutorial   
     To create the roles and permissions we're going to use the Spatie package.
     Create the UI for roles  to display the  create page
-    Add the functionality  to create and store the roles ,paermissions in controller\\
+    Add the functionality  to create and store the roles ,paermissions in controller
 
-
+## Update Spatie Roles and Permissions in Laravel 
+    Add the button for edit and include the style for the button with tailwindcss
+    Add the route ()
+    Add the edit page for  permissions
+    create the function edit into permission controller
+    create the function update into permission controller
+    Repeat the same prodecure for roles
 

@@ -33,4 +33,21 @@ class RoleController extends Controller
             ->with('success', 'Role created successfully');
     }
 
+    public function edit(Role $role)
+    {
+        return view('admin.roles.edit', compact('role'));
+    }
+
+    public function update(Request $request, Role $role)
+    {
+        $validated = $request->validate([
+            'name' => 'required|unique:roles,name,'.$role->id,
+        ]);
+
+        $role->update($validated);
+
+        return redirect()->route('admin.roles.index')
+            ->with('success', 'Role updated successfully');
+    }
+
 }

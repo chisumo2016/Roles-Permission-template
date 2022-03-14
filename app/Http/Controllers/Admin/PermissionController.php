@@ -21,14 +21,32 @@ class PermissionController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|unique:permissions,name',
-        ]);
+        $validate = $request->validate([
+           'name' => 'required|unique:permissions,name,'.$permission->id,
+       ]);
 
-        Permission::create(['name' => $request->name]);
+        Permission::create($validate);
 
         return redirect()->route('admin.permissions.index')
             ->with('success','Permission created successfully.');
+    }
+
+    public function edit(Permission $permission)
+    {
+        return view('admin.permissions.edit',compact('permission'));
+    }
+
+    public function update(Request $request, Permission $permission)
+    {
+
+        $validate = $request->validate([
+            'name' => 'required|unique:permissions,name,'.$permission->id,
+        ]);
+
+        $permission->update($validate);
+
+        return redirect()->route('admin.permissions.index')
+            ->with('success','Permission updated successfully.');
     }
 
 }

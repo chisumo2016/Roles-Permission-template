@@ -54,13 +54,11 @@ class UserController extends Controller
 
     public function removePermission( User $user ,Permission $permission)
     {
-        if(!$user->hasPermissionTo($permission)){
-            return back()->with('success', 'Permission does not exist');
+        if($user->hasPermissionTo($permission)){
+            $user->revokePermissionTo($permission);
+            return back()->with('success', 'Permission revoked successfully');
         }
-        $user->revokePermissionTo($permission);
-
-        return redirect()->route('admin.roles.edit', $user->id)
-            ->with('success', 'Permission removed successfully');
+        return back()->with('success', 'Permission does not exist');
     }
 
     public function destroy(User $user)

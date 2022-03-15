@@ -52,6 +52,8 @@
 
 ## Create Roles and Permissions Pages | Spatie Laravel Role and Permission
       https://spatie.be/docs/laravel-permission/v5/basic-usage/role-permissions
+      https://play.tailwindcss.com/cGTQRwjsz8
+      
     We're going to create the roles and permissions pages.
     Create Permission Controller
         php artisan make:controller Admin/PermissionController
@@ -102,3 +104,33 @@
     create the function destroy into permission controller
     Repeat the same prodecure for roles as you did for permissions
 
+## Assign Permissions to Role | Laravel Permission
+      https://spatie.be/docs/laravel-permission/v5/basic-usage/role-permissions
+      https://play.tailwindcss.com/w1aqeaHYI0
+    Display all the permissions in the edit UI of the roles
+    Add the functionality to assign the permissions to the roles (RoleController)
+    Form to assign the permissions to the role
+    Add the web route to  givepermission and removepermission
+    Add the function to givepermission and removepermission
+    public function removePermission( Role $role,Permission $permission)
+    {
+        if($role->hasPermissionTo($permission)){
+            $role->revokePermissionTo($permission);
+            return back()->with('success', 'Permission revoked successfully');
+        }
+        return back()->with('success', 'Permission not eexist');
+    }
+## Assign Roles to Permission | Spatie Laravel Permission
+    Display all the roles in the edit UI of the permissions
+    Add the functionality to assign the roles to the permissions (PermissionController)
+    Form to assign the roles to the permission
+    Add the web route to  givepermission and removepermission
+    Add the function to givepermission and removepermission
+    public function givePermission( Permission $permission,Role $role)
+    {
+        if($role->hasPermissionTo($permission)){
+            $role->givePermissionTo($permission);
+            return back()->with('success', 'Permission assigned successfully');
+        }
+        return back()->with('success', 'Permission not eexist');
+    }

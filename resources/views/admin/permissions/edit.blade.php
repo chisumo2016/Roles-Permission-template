@@ -5,7 +5,7 @@
                 <div class="flex  p-2">
                     <a href="{{ route('admin.permissions.index') }}" class="px-4 py-2 bg-green-700 hover:bg-green-500 text-slate-100 rounded-md">Permission Index</a>
                 </div>
-                <div class="flex flex-col">
+                <div class="flex flex-col p-2 bg-slate-100">
                     <div class="space-y-8 divide-y divide-gray-200 w-1/2 mt-10">
                         <form action="{{ route('admin.permissions.update', $permission) }}" method="post" enctype="multipart/form-data">
                             @csrf
@@ -13,7 +13,7 @@
                             <div class="sm:col-span-6">
                                 <label
                                     for="name"
-                                    class="block text-sm font-medium text-gray-700"> Name</label>
+                                    class="block text-sm font-medium text-gray-700"> Permission Name</label>
                                 <div class="mt-1">
                                     <input
                                         type="text"
@@ -31,6 +31,48 @@
                                     type="submit"
                                     class="px-4 py-2 bg-green-500 hover:bg-green-700 rounded-md">
                                     Update
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="mt-6 p-2 p-2 bg-slate-100">
+                    <h2 class="text-2xl font-semibold">Roles</h2>
+                    <div class="flex space-x-2 mt-4 p-2">
+                        @if ($permission->roles)
+                            @foreach ($permission->roles as $permission_role)
+                                <form
+                                    class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded-md"
+                                    method="POST" action="{{ route('admin.permissions.roles.remove', [$permission->id , $permission_role->id]) }}"
+                                    onsubmit="return confirm('Are you sure?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit">{{ $permission_role->name }}</button>
+                                </form>
+
+                            @endforeach
+                        @endif
+                    </div>
+                    <div class="max-w-xl mt-6">
+                        <form action="{{ route('admin.permissions.roles', $permission->id) }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="sm:col-span-6">
+                                <label for="role" class="block text-sm font-medium text-gray-700">Roles</label>
+                                <select id="role" name="role" autocomplete="role-name" class="mt-1 block w-1/3 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    @foreach($roles as $role))
+                                    <option value="{{ $role->name}}">{{ $role->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                             @error('role')
+                                <span class="text-red-400 text-sm">{{ $message }}</span>
+                            @enderror
+                            <div class="sm:col-span-6 pt-5">
+                                <button
+                                    type="submit"
+                                    class="px-4 py-2 bg-green-500 hover:bg-green-700 rounded-md">
+                                    Assign Role
                                 </button>
                             </div>
                         </form>

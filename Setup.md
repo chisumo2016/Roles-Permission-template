@@ -137,13 +137,44 @@
 
 ## Users Index Page | Spatie Laravel Permission
     Display the users table
+    Create the admin UserController
      php artisan make:controller Admin/UserController
-
     Add the functionality to display the users with the roles (UserController)
-    Add the web route to  users
-    Add the function to users
-    public function users()
+     public function index()
     {
         $users = User::with('roles')->get();
         return view('admin.users.index', compact('users'));
-    }   
+    } 
+    Add the web route to  users
+
+## Assign Roles and Permissions to Users 
+    To put roles and permission to one page of the user
+    Create a file called show.blade.php inside the admin/users folder
+    Copy the edit page from Role and paste into users/show.blade.php
+    Go to the admin/permission edit and copy the permission edit page
+    Add the route name each by each
+    Add the function to assignRole and removeRole
+        Copy the functionality of PermissionController and paste into UserController
+    Add the function to givepermission and removepermission
+        Copy the functionality of RoleController and paste into UserController
+
+    public function removePermission( User $user ,Permission $permission)
+    {
+        if(!$user->hasPermissionTo($permission)){
+            return back()->with('success', 'Permission does not exist');
+        }
+        $user->revokePermissionTo($permission);
+
+        return redirect()->route('admin.roles.edit', $user->id)
+            ->with('success', 'Permission removed successfully');
+    }
+     public function removePermission( User $user ,Permission $permission)
+    {
+          if ($user->hasPermissionTo($permission)) {
+            $user->revokePermissionTo($permission);
+            return back()->with('success','Permission Removed successfully.');
+        }
+        return back()->with('success','Permission does not exist.');
+            
+        }
+    }

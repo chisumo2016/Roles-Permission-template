@@ -134,3 +134,16 @@
         }
         return back()->with('success', 'Permission not eexist');
     }
+
+## Users Index Page | Spatie Laravel Permission
+    Display the users table
+     php artisan make:controller Admin/UserController
+
+    Add the functionality to display the users with the roles (UserController)
+    Add the web route to  users
+    Add the function to users
+    public function users()
+    {
+        $users = User::with('roles')->get();
+        return view('admin.users.index', compact('users'));
+    }   
